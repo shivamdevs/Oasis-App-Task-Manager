@@ -1,0 +1,10 @@
+.layout {
+    display: flex;
+    position: fixed;
+    inset: 0 0 0 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    min-height: 0;
+    min-width: 0;
+    background-color: #dfdfdf;
+}

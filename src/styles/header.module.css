@@ -1,0 +1,8 @@
+.header {
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 0;
+    min-width: 0;
+    background-color: var(--color-header);
+    border-bottom: 1px solid var(--color-border);
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import css from './../styles/sidebar.module.css';
 
-import { HiChevronDoubleLeft } from 'react-icons/fa';
+import { HiChevronDoubleLeft } from 'react-icons/hi';
 
 function Sidebar(props) {
     const [render, setRender] = useState(false);

@@ -6,5 +6,5 @@
     flex-wrap: nowrap;
     min-height: 0;
     min-width: 0;
-    background-color: #dfdfdf;
+    background-color: var(--color-layout);
 }

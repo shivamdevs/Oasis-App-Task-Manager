@@ -8,11 +8,78 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+body, html, *, *::before, *::after, :host, :root {
+  word-wrap: break-word;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -moz-osx-font-smoothing: grayscale;
+}
+input, button, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
 
 :root {
     --color-symbol: #727888;
+    --color-layout: #dfdfdf;
+    --color-content: #fff;
     --color-header: #fff;
     --color-sidebar: #fff;
     --color-border: #ccc;
     --color-handle: #2a51be88;
+
+    --shadow-content: #0002;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.flex,
+.justify-center,
+.justify-end,
+.justify-start,
+.justify-around,
+.justify-between,
+.justify-evenly,
+.flex-row,
+.flex-row-break  {
+    display: flex;
+}
+.inline-flex {
+    display: inline-flex;
+}
+.justify-center { justify-content: center }
+.justify-end { justify-content: flex-end }
+.justify-start { justify-content: flex-start }
+.justify-around { justify-content: space-around }
+.justify-between { justify-content: space-between }
+.justify-evenly { justify-content: space-evenly }
+
+.align-center { align-items: center }
+.align-baseline { align-items: baseline }
+.align-start { align-items: flex-start }
+.align-end { align-items: flex-end }
+.align-stretch { align-items: stretch }
+
+.flex-row { flex-direction: row }
+.flex-row-break { flex-direction: row; flex-wrap: wrap; justify-content: space-between }
+.flex-row-break > * { display: flex; flex: 1; min-width: 200px }

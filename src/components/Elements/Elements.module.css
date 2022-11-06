@@ -1,0 +1,214 @@
+.formgroup {
+    margin: 10px auto;
+    width: 100%;
+    flex-direction: column;
+    padding: 10px;
+}
+.formgroup {
+    --bgc: #fff;
+    --cld: #727888;
+    --cls: #73c990;
+    --clf: #4285f4;
+    --cle: #ff6347;
+    --clr: var(--cld);
+}
+.inputarea {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    box-shadow: 0 0 0 1px var(--clr);
+    border-radius: 6px;
+    transition: .1s ease;
+}
+.formgroup.focus {
+    --clr: var(--clf);
+}
+.formgroup.finish {
+    --clr: var(--cls);
+}
+.formgroup.error {
+    --clr: var(--cle);
+}
+.formgroup.focus .inputarea {
+    box-shadow: 0 0 0 3px var(--clr);
+}
+.inputlabel {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 15px;
+    right: 15px;
+    translate: 0 -50%;
+    line-height: 1;
+    transition: .1s ease;
+}
+.inputlabel > span {
+    background-color: var(--bgc);
+    color: var(--clr);
+    font-weight: 600;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+.formgroup.focus .inputlabel,
+.formgroup.active .inputlabel {
+    top: -1px;
+    font-size: .9em;
+}
+.inputlabel.withicon {
+    left: 50px;
+    right: 20px;
+}
+.inputlabel.withinfo {
+    right: 50px;
+}
+.inputbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.input {
+    flex: 1;
+    height: 100%;
+    min-width: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #000;
+    padding: 0 15px;
+    transition: .1s ease;
+}
+.icon,
+.info {
+    min-width: 30px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 20px;
+    justify-content: center;
+}
+.icon {
+    margin-left: 10px;
+}
+.info {
+    margin-right: 10px;
+}
+.throw {
+    padding: 4px 2px 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cld);
+}
+.formgroup.error .throw {
+    color: var(--cle);
+}
+.formgroup.finish .throw {
+    color: var(--cls);
+}
+
+.checklabel {
+    cursor: pointer;
+    flex-wrap: nowrap;
+    user-select: none;
+    position: relative;
+    align-items: center;
+    display: inline-flex;
+    justify-content: flex-start;
+}
+.checklabel.keepright {
+    width: 100%;
+    justify-content: space-between;
+}
+.checkinput {
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+.checkbox {
+    width: 19px;
+    height: 19px;
+    line-height: 1;
+    margin: 0 20px;
+    min-width: 19px;
+    min-height: 19px;
+    border-radius: 3px;
+    position: relative;
+    transform: scale(1);
+    display: inline-block;
+    vertical-align: middle;
+    transition: all .2s ease;
+    border: 2px solid #9098a9;
+}
+.checklabel:hover .checkbox {
+    border-color: #506eec;
+}
+.checklabel.checked .checkbox {
+    background: #506eec;
+    border-color: #506eec;
+    animation: elements_inputcheck_checkbox_checkbox_checked_wave .4s ease;
+}
+.checkbox > span {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 50%;
+    transform: scale(0);
+    background: #506eec;
+}
+.checklabel.checked .checkbox > span {
+    opacity: 0;
+    transform: scale(3.5);
+    transition: all .6s ease;
+}
+.checkbox > svg {
+    top: 3px;
+    left: 2px;
+    fill: none;
+    stroke-width: 2;
+    stroke: #fff;
+    position: absolute;
+    stroke-linecap: round;
+    transition-delay: .1s;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all .2s ease;
+    transform: translate3d(0,0,0);
+}
+.checklabel.checked .checkbox > svg {
+    stroke-dashoffset: 0;
+}
+.checktext {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.checktext > .checkdata {
+    display: inline-block;
+    text-align: left;
+    word-wrap: break-word;
+    padding: 0 6px;
+}
+.checklabel.keepleft,
+.checklabel.keepleft .checktext {
+    display: flex;
+    width: 100%;
+}
+.checklabel.keepleft .checktext > .checkdata {
+    margin-right: auto;
+}
+@keyframes elements_inputcheck_checkbox_checkbox_checked_wave {
+    50% {
+        transform: scale(.7);
+    }
+}

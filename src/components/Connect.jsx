@@ -1,5 +1,4 @@
-import { Input, InputCheck } from './Elements/Elements';
-import { MdPassword } from 'react-icons/md';
+import { Input } from './Elements/Elements';
 
 
 import css from './../styles/connect.module.css';

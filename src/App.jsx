@@ -14,12 +14,13 @@ function App() {
     // const [email, setEmail] = useState("");
     // const [password, setPassword] = useState("");
     // const [user, loading, error] = useAuthState(auth);
-    // useEffect(() => {
+    useEffect(() => {
     // if (loading) {
     //     return;
     // }
-    // if (!user) setAuthorised(false);
-    // }, [user, loading]);
+    // if (!user)
+    setAuthorised(false);
+    }, []);//, [user, loading]);
     return (
         <>
             {authorised && <Layout>

@@ -8,6 +8,7 @@ import Connect from './components/Connect';
 
 function App() {
     const [authorised, setAuthorised] = useState(true);
+    const [sidebar, setSideBar] = useState(true);
     useEffect(()=>{
         const auth = window.localStorage.getItem("pocketbase_auth");
         if (auth !== null) {
@@ -19,9 +20,9 @@ function App() {
     return (
         <>
             {authorised && <Layout>
-            <Sidebar setAuthorised={setAuthorised} />
+            {sidebar && <Sidebar setSideBar={setSideBar} setAuthorised={setAuthorised} />}
             <Root>
-                <Header></Header>
+                <Header sidebar={sidebar} setSideBar={setSideBar} />
                 <Main></Main>
             </Root>
         </Layout>}

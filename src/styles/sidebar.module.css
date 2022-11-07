@@ -39,3 +39,20 @@
     white-space: nowrap;
     color: var(--color-symbol)
 }
+.button {
+    display: inline-flex;
+    min-width: 40px;
+    min-height: 40px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    transition: .2s;
+    color: var(--color-theme);
+}
+.button:hover {
+    background-color: #0001;
+    cursor: pointer;
+}

@@ -6,3 +6,50 @@
     background-color: var(--color-header);
     border-bottom: 1px solid var(--color-border);
 }
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    flex-wrap: nowrap;
+}
+.sidebar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.symbol {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.logo {
+    max-width: 40px;
+    min-width: 40px;
+    min-height: 40px;
+}
+.text {
+    font-weight: 700;
+    font-size: 24px;
+    white-space: nowrap;
+    color: var(--color-symbol)
+}
+.button {
+    display: inline-flex;
+    min-width: 40px;
+    min-height: 40px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    transition: .2s;
+    color: var(--color-theme);
+}
+.button:hover {
+    background-color: #0001;
+    cursor: pointer;
+}

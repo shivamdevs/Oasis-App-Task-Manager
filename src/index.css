@@ -31,6 +31,8 @@ input, button, select, textarea {
     --color-border: #ccc;
     --color-handle: #2a51be88;
 
+    --color-theme: #9731d8;
+
     --shadow-content: #0002;
 }
 

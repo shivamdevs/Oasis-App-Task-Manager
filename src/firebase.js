@@ -45,11 +45,11 @@ const signInWithGoogle = async () => {
         name: user.displayName,
         authProvider: "google",
         email: user.email,
+        profile: user.photoURL,
       });
     }
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    return err;
   }
 };
 
@@ -57,8 +57,7 @@ const logInWithEmailAndPassword = async (email, password) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        return err;
     }
 };
 
@@ -71,20 +70,19 @@ const registerWithEmailAndPassword = async (name, email, password) => {
             name,
             authProvider: "local",
             email,
+            profile: "/assets/images/149071.png",
         });
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        return err;
     }
 };
 
 const sendPasswordReset = async (email) => {
     try {
         await sendPasswordResetEmail(auth, email);
-        alert("Password reset link sent!");
+        return true;
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        return err;
     }
 };
 

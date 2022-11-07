@@ -75,7 +75,7 @@
     color: var(--color-symbol);
 }
 .form {
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 .button {
     border: none;
@@ -129,9 +129,16 @@
 .happy > span {
     margin-inline: auto;
 }
-.happy:hover {
+.happy:disabled,
+.happy.disabled {
+    opacity: .7;
+}
+.happy:not(:disabled):not(.disabled):hover {
     background-color: #2a52be11;
     cursor: pointer;
+}
+.happy:not(:disabled):not(.disabled):active {
+    background-color: #2a52be66;
 }
 .google {
     width: 25px;

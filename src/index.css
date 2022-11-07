@@ -32,6 +32,7 @@ input, button, select, textarea {
     --color-handle: #2a51be88;
 
     --color-theme: #9731d8;
+    --color-theme-light: #9731d822;
 
     --shadow-content: #0002;
 }

@@ -6,27 +6,35 @@ import Root from './components/Root';
 import Sidebar from './components/Sidebar';
 import Connect from './components/Connect';
 
+import { auth } from './firebase';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Toaster } from 'react-hot-toast';
+
+
+
 function App() {
-    const [authorised, setAuthorised] = useState(true);
     const [sidebar, setSideBar] = useState(true);
-    useEffect(()=>{
-        const auth = window.localStorage.getItem("pocketbase_auth");
-        if (auth !== null) {
-            setAuthorised(auth);
-        } else {
-            setAuthorised(false);
+    const [user, loading, error] = useAuthState(auth);
+
+    useEffect(() => {
+        if (loading) {
+            // Loading
         }
-    }, []);
+        if (error) {
+            console.log(error);
+        }
+    }, [error, loading, user]);
     return (
         <>
-            {authorised && <Layout>
-            {sidebar && <Sidebar setSideBar={setSideBar} setAuthorised={setAuthorised} />}
+            <Toaster position={user ? 'bottom-right' : 'bottom-center'} />
+            {user && <Layout>
+            <Sidebar loading={loading} hidden={sidebar} setSideBar={setSideBar} />
             <Root>
                 <Header sidebar={sidebar} setSideBar={setSideBar} />
                 <Main></Main>
             </Root>
         </Layout>}
-        {!authorised && <Connect setAuthorised={setAuthorised} />}
+        {!loading && !user && <Connect />}
         </>
     );
 }

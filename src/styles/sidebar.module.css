@@ -30,6 +30,8 @@
 }
 .logo {
     max-width: 40px;
+    min-width: 40px;
+    min-height: 40px;
 }
 .text {
     font-weight: 700;

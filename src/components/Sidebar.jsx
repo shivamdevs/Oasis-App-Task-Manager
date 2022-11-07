@@ -2,12 +2,18 @@ import { useEffect, useState } from 'react';
 import css from './../styles/sidebar.module.css';
 
 import { HiChevronDoubleLeft } from 'react-icons/hi';
+import Pocketbase from 'pocketbase';
 
 function Sidebar(props) {
     const [render, setRender] = useState(false);
+    const client = new Pocketbase("http://127.0.0.1:8090");
     useEffect(() => {
         setRender(true);
     },[]);
+    const logout = () => {
+        client.authStore.clear();
+        props.setAuthorised(false);
+    };
     return (
         <div className={css.sidebar}>
             {render && <div className={css.wrapper}>
@@ -18,6 +24,7 @@ function Sidebar(props) {
                     </div>
                     <button type="button"><HiChevronDoubleLeft /></button>
                 </div>
+                <button type="button" onClick={logout}>Logout</button>
             </div>}
         </div>
     );

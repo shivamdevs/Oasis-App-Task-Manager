@@ -33,11 +33,12 @@ function Input(props, {ref}) {
                         onFocus={(event) => { if (props.onFocus) props.onFocus(event); inputFocus(event); }}
                         onBlur={(event) => { if (props.onBlur) props.onBlur(event); inputBlur(event); }}
                         onInput={(event) => { if (props.onInput) props.onInput(event); inputInput(event); }}
+                        onChange={props.onChange || null}
                     />
                     {props.info && <Tippy content={props.info} allowHTML={true}><span className={css.info}><i className={props.infoIcon || 'far fa-fw fa-info-circle'}></i></span></Tippy>}
                 </div>
             </div>
-            <div className={css.throw}>{props.throw}</div>
+            <div className={css.throw}>{props.throw || props.error}</div>
         </div>
     );
 }

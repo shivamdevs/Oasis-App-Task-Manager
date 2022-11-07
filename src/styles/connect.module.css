@@ -55,6 +55,8 @@
 }
 .logo {
     max-width: 40px;
+    min-width: 40px;
+    min-height: 40px;
 }
 .text {
     font-weight: 700;
@@ -73,7 +75,7 @@
     color: var(--color-symbol);
 }
 .form {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .button {
     border: none;
@@ -91,17 +93,21 @@
     border-radius: 6px;
     flex: 1;
     max-width: 15em;
-    cursor: pointer;
 }
 .button {
     color: #fff;
     background-color: #34495e;
-    margin: 10px auto;
+    margin: 0 auto;
 }
-.button:hover {
+.button:not(:disabled):not(.disabled):hover {
     color: #fff;
     background-color: #415b76;
+    cursor: pointer;
     border-color: #415b76;
+}
+.button:disabled,
+.button:disabled {
+    opacity: .7;
 }
 .button:not(:disabled):not(.disabled):active {
     background: #2c3e50;

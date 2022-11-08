@@ -14,6 +14,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import { openModel } from './PopModel';
+import { isMobile } from 'react-device-detect';
 
 function Sidebar(props) {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ function Sidebar(props) {
     const [name, setName] = useState("");
     const [profile, setProfile] = useState("/assets/images/149071.png");
     const [workspace, setWorkspace] = useState({
-        wsid: "switch",
+        wsid: "waiting",
         name: "Loading Workspace...",
         desc: "Loading your workspaces",
         icon: "/assets/images/442323.svg",
@@ -90,7 +91,7 @@ function Sidebar(props) {
 
 
     return (
-        <>{props.hidden && <div className={css.sidebar}>
+        <>{props.hidden && <div className={`${css.sidebar} ${isMobile ? css.mobile : ''}`}>
             {!props.loading && <div className={css.wrapper}>
                 <div className={css.header}>
                     <Link to="/" className={css.symbol}>
@@ -99,13 +100,14 @@ function Sidebar(props) {
                     </Link>
                     <Tippy content="Hide Sidebar" placement='right'><button type="button" className={css.button} onClick={toggleBar}><HiChevronDoubleLeft /></button></Tippy>
                 </div>
-                <Tippy content={workspace?.desc} placement='right'>
+                <Tippy content={workspace?.desc}>
                     <div className={css.space}>
                         <button onClick={workspaceClick} className={css.switch}>
                             <div className={css.spaceicon}>
                                 <img src={workspace?.icon || "/assets/images/694823.svg"} alt="" />
                             </div>
                             <div className={css.spacename}>{workspace?.name}</div>
+                        <kbd className={css.keyboard}>Ctrl + C</kbd>
                         </button>
                     </div>
                 </Tippy>
@@ -113,7 +115,7 @@ function Sidebar(props) {
                     <button type="button" className={css.search}>
                         <BiSearch />
                         <span className={css.text}>Search Workspace</span>
-                        <kbd className={css.key}>Ctrl + K</kbd>
+                        <kbd className={css.keyboard}>Ctrl + K</kbd>
                     </button>
                 </div>
                 <div className={css.body}>
@@ -145,5 +147,6 @@ function Workspace(props) {
     return (<>
         {space.wsid === 'new' && <><p className={css.Wc}>Create a new Workspace first.</p><p className={css.Wcm}>Workspace helps in keeping your lists separate from each other.</p></>}
         {space.wsid === 'switch' && <><p className={css.Wc}>Switch to a Workspace first.</p><p className={css.Wcm}>Workspace helps in keeping your lists separate from each other.</p></>}
+        {space.wsid === 'waiting' && <><p className={css.Wc}>Loading workspace data...</p><p className={css.Wcm}>Workspace helps in keeping your lists separate from each other.</p></>}
     </>);
 }

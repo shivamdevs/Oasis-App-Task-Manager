@@ -27,13 +27,14 @@
     display: inline-flex;
     align-items: center;
     flex-wrap: nowrap;
+    text-decoration: none;
 }
-.logo {
+.header .logo {
     max-width: 40px;
     min-width: 40px;
     min-height: 40px;
 }
-.text {
+.header .text {
     font-weight: 700;
     font-size: 24px;
     white-space: nowrap;
@@ -58,6 +59,8 @@
 }
 .body {
     display: flex;
+    flex-direction: column;
+    overflow: hidden auto;
     width: 100%;
     flex: 1;
 }
@@ -77,7 +80,7 @@
     flex-wrap: nowrap;
     align-items: center;
     padding: 5px;
-    width: calc(100% - 70px);
+    width: calc(100% - 60px);
     transition: .2s;
     border-radius: 10px;
 }
@@ -86,18 +89,14 @@
     background-color: var(--color-theme-light);
 }
 .picture {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
     background-color: var(--color-layout);
 }
-.picture > img {
-    max-width: 100%;
-    max-height: 100%;
-}
 .logout {
-    min-width: 60px;
+    min-width: 50px;
     font-size: 1.6em;
     background-color: transparent;
     transition: .2s;
@@ -118,8 +117,7 @@
     flex-wrap: nowrap;
     flex-direction: column;
     padding-inline: 10px 5px;
-    width: calc(100% - 50px);
-    gap: 5px;
+    width: calc(100% - 40px);
 }
 .profileData > div {
     display: block;
@@ -141,4 +139,87 @@
 .profileNext > svg {
     font-size: 1.3em;
     margin-left: 5px;
+}
+.searchbox,
+.space {
+    display: block;
+    width: 100%;
+    padding: 4px 10px;
+}
+.search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-wrap: nowrap;
+    padding: 7px 10px;
+    background-color: var(--color-layout);
+    border: none;
+    border-radius: 10px;
+    transition: .2s;
+}
+.search:hover {
+    cursor: pointer;
+    background-color: var(--color-theme-light);
+}
+.search > svg {
+    font-size: 1.1em;
+    color: var(--color-symbol);
+}
+.search .text {
+    color: var(--color-symbol);
+    font-size: .9em;
+    padding-inline: 10px;
+}
+.search .key {
+    color: var(--color-theme);
+    margin-left: 10px;
+    font-weight: 600;
+    margin-left: auto;
+    padding-right: 5px;
+}
+.switch {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border: 1px solid var(--color-border);
+    background-color: transparent;
+    transition: .2s;
+    border-radius: 10px;
+}
+.switch:hover {
+    background-color: #0001;
+    cursor: pointer;
+}
+.spaceicon {
+    width: 30px;
+    height: 30px;
+    border: 5px;
+    overflow: hidden;
+}
+.spacename {
+    font-weight: 600;
+    color: var(--color-theme);
+    padding-inline: 10px;
+    width: calc(100% - 30px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.Wc {
+    display: block;
+    padding: 20px 10px 0;
+    color: var(--color-symbol);
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+.Wcm {
+    display: block;
+    padding: 10px 10px 0;
+    color: var(--color-symbol);
+    font-size: 14px;
+    text-align: center;
 }

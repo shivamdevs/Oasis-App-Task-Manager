@@ -90,9 +90,38 @@ const logout = () => {
     signOut(auth);
 };
 
+const getUserData = async (user) => {
+    try {
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const doc = await getDocs(q);
+        const data = doc.docs[0].data();
+        return data;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+};
+
+const getWorkspaces = async (user) => {
+    try {
+        const q = query(collection(db, "workspace"), where("uid", "==", user?.uid));
+        const doc = await getDocs(q);
+        const data = [];
+        for (let item of doc.docs) {
+            data.push(item.data());
+        }
+        return data;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+};
+
 export {
     auth,
     db,
+    getUserData,
+    getWorkspaces,
     signInWithGoogle,
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,

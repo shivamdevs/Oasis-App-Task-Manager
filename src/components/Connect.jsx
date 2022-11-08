@@ -1,7 +1,7 @@
 import { Input } from './Elements/Elements';
 import css from './../styles/connect.module.css';
 import { useState } from 'react';
-import toast  from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 
 import { logInWithEmailAndPassword, registerWithEmailAndPassword, signInWithGoogle, sendPasswordReset } from "./../firebase";

@@ -1,0 +1,28 @@
+.title {
+    display: block;
+    width: 100%;
+    margin: 1em auto;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--color-symbol);
+    text-align: center;
+}
+.title > span {
+    color: var(--color-theme);
+}
+.card {
+    background-color: var(--color-content);
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px 2px var(--shadow-content);
+}
+.head {
+    color: var(--color-current);
+    font-weight: 500;
+    font-size: 20px;
+    border-bottom: 1px solid var(--color-border);
+    padding: 10px 0;
+}
+.head > span {
+    color: var(--color-symbol);
+}

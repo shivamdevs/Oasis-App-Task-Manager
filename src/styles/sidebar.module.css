@@ -202,6 +202,7 @@
     transition: .2s;
     border-radius: 10px;
     overflow: hidden;
+    text-decoration: none;
 }
 .switch:hover {
     background-color: #0001;

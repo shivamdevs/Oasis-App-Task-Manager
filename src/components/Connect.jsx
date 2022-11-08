@@ -31,6 +31,9 @@ function filterErr(error) {
         } else if (error.message.includes('auth/internal-error')) {
             type = "toast";
             code = "An internal error occured. Try again later.";
+        } else if (error.toString().includes('Quota exceeded.')) {
+            type = "toast";
+            code = "Server limit overloaded. Try again later.";
         }
     }
     return {

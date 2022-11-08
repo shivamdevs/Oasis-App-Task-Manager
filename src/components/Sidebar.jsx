@@ -36,12 +36,14 @@ function Sidebar(props) {
             setProfile(data.profile);
         } else {
             toast.error("Failed to fetch user data.");
+            // signout();
         }
     };
     const fetchWorkspace = async () => {
         const data = await getWorkspaces(user);
         if (data === null) {
             toast.error("Failed to fetch workspaces.");
+            // signout();
         } else if (data.length) {
             let flag = false;
             for (let item of data) {
@@ -81,10 +83,10 @@ function Sidebar(props) {
     const toggleBar = () => {
         props.setSideBar(stat => !stat);
     };
-    const workspaceClick = async () => {
+    const searchClick = async () => {
         if (workspace.wsid === "loading") return toast.error("Still loading workspace.");
-        openModel("workspace").then((data) => {
-            navigate("/" + data.id);
+        openModel("search-workspace").then((data) => {
+            navigate(data.path);
         }).catch(err => {
             console.log(err);
         });
@@ -107,20 +109,18 @@ function Sidebar(props) {
                 </div>
                 <Tippy content={workspace?.desc}>
                     <div className={css.space}>
-                        <button onClick={workspaceClick} className={css.switch}>
+                        <Link to="/workspaces" className={css.switch}>
                             <div className={css.spaceicon}>
                                 <img src={workspace?.icon || "/assets/images/694823.svg"} alt="" />
                             </div>
                             <div className={css.spacename}>{workspace?.name}</div>
-                        <kbd className={css.keyboard}>Ctrl + C</kbd>
-                        </button>
+                        </Link>
                     </div>
                 </Tippy>
                 <div className={css.searchbox}>
-                    <button type="button" className={css.search}>
+                    <button onClick={searchClick} className={css.search}>
                         <BiSearch />
                         <span className={css.text}>Search Workspace</span>
-                        <kbd className={css.keyboard}>Ctrl + K</kbd>
                     </button>
                 </div>
                 <div className={css.body}>

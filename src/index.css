@@ -28,6 +28,7 @@ img {
 }
 
 :root {
+    --color-current: #121212;
     --color-symbol: #727888;
     --color-layout: #dfdfdf;
     --color-content: #fff;

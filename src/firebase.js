@@ -70,7 +70,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
             name,
             authProvider: "local",
             email,
-            profile: "/assets/images/149071.png",
+            profile: "",
         });
     } catch (err) {
         return err;
@@ -95,6 +95,7 @@ const getUserData = async (user) => {
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
         const doc = await getDocs(q);
         const data = doc.docs[0].data();
+        if (!data.profile) data.profile = `https://ui-avatars.com/api/?name=${encodeURI(data.name)}&background=2a52be&color=fff`;
         return data;
     } catch (err) {
         console.error(err);

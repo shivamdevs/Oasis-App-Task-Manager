@@ -82,7 +82,12 @@ function Sidebar(props) {
         props.setSideBar(stat => !stat);
     };
     const workspaceClick = async () => {
-        /*const pop = */await openModel("new-workspace");
+        if (workspace.wsid === "loading") return toast.error("Still loading workspace.");
+        openModel("workspace").then((data) => {
+            navigate("/" + data.id);
+        }).catch(err => {
+            console.log(err);
+        });
     };
     const signout = () => {
         navigate("/");
@@ -121,8 +126,8 @@ function Sidebar(props) {
                 <div className={css.body}>
                     <Workspace workspace={workspace} />
                 </div>
-                {name && <div className={css.footer}>
-                    <div className={css.profile}>
+                <div className={css.footer}>
+                    {name && <div className={css.profile}>
                         <div className={css.picture}>
                             <img src={profile} alt="" />
                         </div>
@@ -132,9 +137,9 @@ function Sidebar(props) {
                                 <div className={css.profileNext}><span>View profile</span> <HiChevronDoubleRight /></div>
                             </div>
                         </Tippy>
-                    </div>
+                    </div>}
                     <Tippy content="Logout" placement='right'><button type="button" className={css.logout} onClick={signout}><AiOutlinePoweroff /></button></Tippy>
-                </div>}
+                </div>
             </div>}
         </div>}</>
     );

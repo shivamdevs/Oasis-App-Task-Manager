@@ -2,6 +2,9 @@ import css from './../styles/popmodel.module.css';
 
 import { createRoot } from 'react-dom/client';
 
+import { MdClose } from 'react-icons/md';
+import Tippy from '@tippyjs/react';
+
 // import { useState } from'react';
 
 function Popmodel(props) {
@@ -21,24 +24,27 @@ function openModel(model) {
             pop.addEventListener('click', function(e) {
                 if (e.target=== this) {
                     reject({
-                        type: "close",
-                        code: "Popup closed",
+                        type: "model",
+                        code: "Popup closed.",
                     });
-                    close();
+                    popup.unmount();
+                    root.removeChild(pop);
                 } else {
                     trigger();
                 }
             }, {once: true});
         };
         const close = () => {
-            popup.unmount();
-            root.removeChild(pop);
+            pop.click();
         };
+
         trigger();
 
         popup.render(<>
             <div className={css.wrapper}>
-                {model === 'workspace' && <Workspace />}
+                <div className={css.grid}>
+                    {model === 'workspace' && <Workspace resolve={resolve} close={close} reject={reject} />}
+                </div>
             </div>
         </>);
     });
@@ -47,9 +53,22 @@ function openModel(model) {
 export default Popmodel;
 export {openModel};
 
+function Header(props) {
+    return (
+        <div className={css.header}>
+            <div className={css.headerdata}>
+                {props.icon && <div className={css.headericon}><img src={props.icon} alt="" /></div>}
+                <div className={css.headertext}>{props.text}</div>
+            </div>
+            <Tippy content={`Close ${props.text}`} placement='left'><button className={css.headerclose} onClick={props.close}><MdClose /></button></Tippy>
+        </div>
+    );
+}
 
 function Workspace(props) {
     return (
-        <></>
+        <>
+            <Header close={props.close} text="Workspace" icon="/assets/images/694825.svg" />
+        </>
     );
 }

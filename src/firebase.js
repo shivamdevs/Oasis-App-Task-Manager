@@ -16,6 +16,7 @@ import {
     collection,
     where,
     addDoc,
+    updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -94,6 +95,7 @@ const getUserData = async (user) => {
     try {
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
         const doc = await getDocs(q);
+        if (!doc.docs.length) return null;
         const data = doc.docs[0].data();
         if (!data.profile) data.profile = `https://ui-avatars.com/api/?name=${encodeURI(data.name)}&background=2a52be&color=fff`;
         return data;
@@ -109,9 +111,38 @@ const getWorkspaces = async (user) => {
         const doc = await getDocs(q);
         const data = [];
         for (let item of doc.docs) {
-            data.push(item.data());
+            data.push({
+                ...item.data(),
+                wsid: item.id,
+            });
         }
         return data;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+};
+
+const createWorkspace = async (user, name) => {
+    try {
+        const q = query(collection(db, "workspace"), where("uid", "==", user?.uid), where("name", "==", name));
+        const doc = await getDocs(q);
+        if (doc.docs.length) return {error: "This workspace is already yours."};
+        const wsp = await addDoc(collection(db, "workspace"), {
+            uid: user.uid,
+            name,
+        });
+        // const q2 = query(collection(db, "workspace"), where("uid", "==", user?.uid));
+        // const lock = await getDocs(q2);
+        // console.log(lock);
+        // for (let item of lock.docs) {
+        //     if (item.id === wsp.id) {
+        //         await updateDoc(collection(db, "workspace", item.id), {wsid: wsp.id});
+        //     } else {
+        //         await updateDoc(collection(db, "workspace", item.id), {active: true});
+        //     }
+        // }
+        return wsp.id;
     } catch (err) {
         console.error(err);
         return null;
@@ -123,6 +154,7 @@ export {
     db,
     getUserData,
     getWorkspaces,
+    createWorkspace,
     signInWithGoogle,
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,

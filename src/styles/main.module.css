@@ -4,6 +4,7 @@
     flex-wrap: nowrap;
     flex-direction: row;
     flex: 1;
+    position: relative;
 }
 .main > div:first-child {
     display: block;
@@ -19,4 +20,8 @@
     width: 350px;
     background-color: var(--color-content);
     border-left: 1px solid var(--color-border);
+}
+.main > div:last-child:first-child {
+    position: absolute;
+    inset: 0;
 }

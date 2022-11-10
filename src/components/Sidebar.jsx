@@ -19,6 +19,7 @@ import { isMobile } from 'react-device-detect';
 function Sidebar(props) {
     const navigate = useNavigate();
 
+
     const [user] = useAuthState(auth);
     const [name, setName] = useState("");
     const [profile, setProfile] = useState("/assets/images/149071.png");
@@ -38,27 +39,35 @@ function Sidebar(props) {
             toast.error("Failed to fetch user data.");
             // signout();
         }
+        return false;
     };
     const fetchWorkspace = async () => {
         const data = await getWorkspaces(user);
+        let space = window.localStorage ? window.localStorage.getItem("--tm-space-id") : null;
+        console.log(data);
         if (data === null) {
             toast.error("Failed to fetch workspaces.");
             // signout();
         } else if (data.length) {
             let flag = false;
+            if (!space) {
+                space = data[0].wsid;
+                if (window.localStorage) window.localStorage.setItem("--tm-space-id", space);
+            }
             for (let item of data) {
-                if (item.active && item.active === true) {
+                if (item.wsid === space) {
                     flag = true;
                     setWorkspace({
                         wsid: item.wsid,
                         name: item.name,
-                        icon: item.icon,
+                        icon: "/assets/images/694824.svg",
                         desc: "Switch to another workspace",
                     });
                     break;
                 }
             }
             if (!flag) {
+                if (window.localStorage) window.localStorage.setItem("--tm-space-id", "");
                 setWorkspace({
                     wsid: "switch",
                     name: "Select a workspace",
@@ -67,6 +76,7 @@ function Sidebar(props) {
                 });
             }
         } else {
+            if (window.localStorage) window.localStorage.setItem("--tm-space-id", "");
             setWorkspace({
                 wsid: "new",
                 name: "Create workspace",
@@ -74,11 +84,12 @@ function Sidebar(props) {
                 desc: "Create a new workspace",
             });
         }
+        return false;
     };
     useEffect(() => {
         fetchUserProfile();
         fetchWorkspace();
-    });
+    }, []);
 
     const toggleBar = () => {
         props.setSideBar(stat => !stat);
@@ -127,17 +138,17 @@ function Sidebar(props) {
                     <Workspace workspace={workspace} />
                 </div>
                 <div className={css.footer}>
-                    {name && <div className={css.profile}>
+                    {name && <Link to="/profile" className={css.profile}>
                         <div className={css.picture}>
                             <img src={profile} alt="" />
                         </div>
-                        <Tippy content={name}>
-                            <div className={css.profileData}>
+                        <div className={css.profileData}>
+                            <Tippy content={name}>
                                 <div className={css.profileName}>{name || <span>&nbsp;</span>}</div>
-                                <div className={css.profileNext}><span>View profile</span> <HiChevronDoubleRight /></div>
-                            </div>
-                        </Tippy>
-                    </div>}
+                            </Tippy>
+                            <div className={css.profileNext}><span>View profile</span> <HiChevronDoubleRight /></div>
+                        </div>
+                    </Link>}
                     <Tippy content="Logout" placement='right'><button type="button" className={css.logout} onClick={signout}><AiOutlinePoweroff /></button></Tippy>
                 </div>
             </div>}

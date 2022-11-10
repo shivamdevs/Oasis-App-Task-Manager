@@ -118,7 +118,7 @@
     align-items: center;
     flex-wrap: nowrap;
     background-color: var(--color-content);
-    color: var(--color-text);
+    color: var(--color-current);
     padding: 10px;
     width: 100%;
     border-radius: 30px;

@@ -44,13 +44,16 @@ function filterErr(error) {
 
 function Connect(props) {
     const [state, setState] = useState("login");
+    const setTitle = (...titles) => {
+        document.title = titles.length ? titles.join(" • ") + " • Task Manager" : "Task Manager";
+    };
     return (
         <div className={css.connector}>
             <div className={css.layout}>
                 <div className={css.wrapper}>
-                    {state === "login" && <LoginCard setState={setState} />}
-                    {state === "register" && <RegisterCard setState={setState} />}
-                    {state === "password" && <PasswordCard setState={setState} />}
+                    {state === "login" && <LoginCard setTitle={setTitle} setState={setState} />}
+                    {state === "register" && <RegisterCard setTitle={setTitle} setState={setState} />}
+                    {state === "password" && <PasswordCard setTitle={setTitle} setState={setState} />}
                 </div>
             </div>
         </div>
@@ -65,6 +68,8 @@ function LoginCard(props) {
     const [passwordError, setPasswordError] = useState("");
 
     const [disabled, setDisabled] = useState(false);
+
+    props.setTitle("Sign in");
 
     async function login(e) {
         e.preventDefault();
@@ -175,6 +180,8 @@ function RegisterCard(props) {
     const [passwordError, setPasswordError] = useState("");
 
     const [disabled, setDisabled] = useState(false);
+
+    props.setTitle("Register");
 
     async function register(e) {
         e.preventDefault();
@@ -288,6 +295,8 @@ function PasswordCard(props) {
     const [emailError, setEmailError] = useState("");
 
     const [disabled, setDisabled] = useState(false);
+
+    props.setTitle("Reset Password");
 
     async function reset(e) {
         e.preventDefault();

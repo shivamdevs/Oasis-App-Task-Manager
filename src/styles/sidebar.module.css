@@ -89,6 +89,8 @@
     padding: 5px;
     width: calc(100% - 60px);
     transition: .2s;
+    text-decoration: none;
+    color: var(--color-current);
     border-radius: 10px;
 }
 .profile:hover {

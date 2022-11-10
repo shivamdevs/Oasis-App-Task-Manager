@@ -20,6 +20,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="*" element={<Element />}></Route>
+                    <Route path="/accounts" element={<Connect />}></Route>
                 </Routes>
             </BrowserRouter>
         </>
@@ -35,8 +36,9 @@ function Element(props) {
 
     useEffect(() => {
         if (!loading && !user) {
-            navigate("/");
+            navigate("/accounts");
         }
+
         if (error) {
             console.log(error);
         }
@@ -52,7 +54,6 @@ function Element(props) {
                 </Root>
                 <PopModel />
             </Layout>}
-            {!loading && !user && <Connect />}
         </>
     );
 }

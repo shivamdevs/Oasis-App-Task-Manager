@@ -1,0 +1,45 @@
+.space {
+    display: block;
+}
+.title {
+    display: block;
+    width: 100%;
+    margin: 0 auto 1em;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-theme);
+}
+.title > span {
+    color: var(--color-symbol);
+}
+.card {
+    background-color: var(--color-content);
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px 2px var(--shadow-content);
+    margin-block: 20px;
+}
+.card .head {
+    color: var(--color-current);
+    font-weight: 500;
+    font-size: 18px;
+    padding: 5px 0;
+}
+.card .head > span {
+    color: var(--color-symbol);
+}
+
+.newarea {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.areasubmit {
+    padding: 8px 0 0;
+}
+.areasubmit > button {
+    padding: 13px 26px;
+    color: var(--color-invert);
+    background-color: var(--color-theme);
+}

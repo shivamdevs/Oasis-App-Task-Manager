@@ -30,66 +30,66 @@ function Sidebar(props) {
         icon: "/assets/images/442323.svg",
     });
 
-    const fetchUserProfile = async () => {
-        const data = await getUserData(user);
-        if (data) {
-            setName(data.name);
-            setProfile(data.profile);
-        } else {
-            toast.error("Failed to fetch user data.");
-            // signout();
-        }
-        return false;
-    };
-    const fetchWorkspace = async () => {
-        const data = await getWorkspaces(user);
-        let space = window.localStorage ? window.localStorage.getItem("--tm-space-id") : null;
-        console.log(data);
-        if (data === null) {
-            toast.error("Failed to fetch workspaces.");
-            // signout();
-        } else if (data.length) {
-            let flag = false;
-            if (!space) {
-                space = data[0].wsid;
-                if (window.localStorage) window.localStorage.setItem("--tm-space-id", space);
-            }
-            for (let item of data) {
-                if (item.wsid === space) {
-                    flag = true;
-                    setWorkspace({
-                        wsid: item.wsid,
-                        name: item.name,
-                        icon: "/assets/images/694824.svg",
-                        desc: "Switch to another workspace",
-                    });
-                    break;
-                }
-            }
-            if (!flag) {
-                if (window.localStorage) window.localStorage.setItem("--tm-space-id", "");
-                setWorkspace({
-                    wsid: "switch",
-                    name: "Select a workspace",
-                    icon: "/assets/images/694824.svg",
-                    desc: "Switch to a workspace",
-                });
-            }
-        } else {
-            if (window.localStorage) window.localStorage.setItem("--tm-space-id", "");
-            setWorkspace({
-                wsid: "new",
-                name: "Create workspace",
-                icon: "/assets/images/694823.svg",
-                desc: "Create a new workspace",
-            });
-        }
-        return false;
-    };
-    useEffect(() => {
-        fetchUserProfile();
-        fetchWorkspace();
-    }, []);
+    // const fetchUserProfile = async () => {
+    //     const data = await getUserData(user);
+    //     if (data) {
+    //         setName(data.name);
+    //         setProfile(data.profile);
+    //     } else {
+    //         toast.error("Failed to fetch user data.");
+    //         // signout();
+    //     }
+    //     return false;
+    // };
+    // const fetchWorkspace = async () => {
+    //     const data = await getWorkspaces(user);
+    //     let space = window.localStorage ? window.localStorage.getItem("--tm-space-id") : null;
+    //     console.log(data);
+    //     if (data === null) {
+    //         toast.error("Failed to fetch workspaces.");
+    //         // signout();
+    //     } else if (data.length) {
+    //         let flag = false;
+    //         if (!space) {
+    //             space = data[0].wsid;
+    //             if (window.localStorage) window.localStorage.setItem("--tm-space-id", space);
+    //         }
+    //         for (let item of data) {
+    //             if (item.wsid === space) {
+    //                 flag = true;
+    //                 setWorkspace({
+    //                     wsid: item.wsid,
+    //                     name: item.name,
+    //                     icon: "/assets/images/694824.svg",
+    //                     desc: "Switch to another workspace",
+    //                 });
+    //                 break;
+    //             }
+    //         }
+    //         if (!flag) {
+    //             if (window.localStorage) window.localStorage.setItem("--tm-space-id", "");
+    //             setWorkspace({
+    //                 wsid: "switch",
+    //                 name: "Select a workspace",
+    //                 icon: "/assets/images/694824.svg",
+    //                 desc: "Switch to a workspace",
+    //             });
+    //         }
+    //     } else {
+    //         if (window.localStorage) window.localStorage.setItem("--tm-space-id", "");
+    //         setWorkspace({
+    //             wsid: "new",
+    //             name: "Create workspace",
+    //             icon: "/assets/images/694823.svg",
+    //             desc: "Create a new workspace",
+    //         });
+    //     }
+    //     return false;
+    // };
+    // useEffect(() => {
+    //     fetchUserProfile();
+    //     fetchWorkspace();
+    // }, []);
 
     const toggleBar = () => {
         props.setSideBar(stat => !stat);

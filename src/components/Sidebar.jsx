@@ -40,7 +40,7 @@ function Sidebar(props) {
             // signout();
         }
         return false;
-    });
+    }, [user]);
     const fetchWorkspace = useCallback(async () => {
         const data = await getWorkspaces(user);
         let space = window.localStorage ? window.localStorage.getItem("--tm-space-id") : null;
@@ -85,7 +85,7 @@ function Sidebar(props) {
             });
         }
         return false;
-    });
+    }, [user]);
     useEffect(() => {
         fetchUserProfile();
         fetchWorkspace();

@@ -20,13 +20,13 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBxukV4ANIr5hxQy0t6ALyC40j3uNV1Kt8",
-    authDomain: "shivamdevs-task-manager.firebaseapp.com",
-    projectId: "shivamdevs-task-manager",
-    storageBucket: "shivamdevs-task-manager.appspot.com",
-    messagingSenderId: "610515433025",
-    appId: "1:610515433025:web:ed73778afd081530e378c0",
-    measurementId: "G-1E00NP0QX4"
+    apiKey: "AIzaSyAuT7owM2lF6JqmWUionKIM1vQ2pOHgzRM",
+    authDomain: "my-oasis-tech.firebaseapp.com",
+    projectId: "my-oasis-tech",
+    storageBucket: "my-oasis-tech.appspot.com",
+    messagingSenderId: "180046491267",
+    appId: "1:180046491267:web:f184a60c760b8c0eb375b6",
+    measurementId: "G-WJZGXF8F3L"
 };
 
 const app = initializeApp(firebaseConfig);
